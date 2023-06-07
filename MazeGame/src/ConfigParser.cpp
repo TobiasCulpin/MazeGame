@@ -24,7 +24,7 @@ namespace MazeGame
 		std::vector<std::string> lines;
 		std::string tempLine;
 		std::ifstream configFile;
-		configFile.open(CONFIG_PATH + this->m_fileName + std::string(".config"));
+		configFile.open(MG_CONFIG_PATH + this->m_fileName + std::string(".config"));
 		while (std::getline(configFile, tempLine))
 		{
 			lines.push_back(tempLine);

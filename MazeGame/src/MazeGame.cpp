@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "MazeGame.h"
 #include "ConfigParser.h"
+#include "Globals.h"
 
 #define MAX_LOADSTRING 100
 
@@ -29,6 +30,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // TODO: Place code here.
     MazeGame::ConfigParser parser = MazeGame::ConfigParser("config1");
+    //parser.m_gameData
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -101,7 +103,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // Store instance handle in our global variable
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, MG_WINDOW_WIDTH, MG_WINDOW_HEIGHT, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
