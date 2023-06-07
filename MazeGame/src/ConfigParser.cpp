@@ -2,13 +2,14 @@
 #include "Globals.h"
 
 #include <fstream>
-#include <list>
+#include <vector>
 #include <string>
 
 namespace MazeGame
 {
 	ConfigParser::ConfigParser(std::string fileName)
 	{
+		this->m_gameData = GameData();
 		this->m_fileName = fileName;
 		this->Parse();
 	}
@@ -20,7 +21,7 @@ namespace MazeGame
 
 	void ConfigParser::Parse()
 	{
-		std::list<std::string> lines;
+		std::vector<std::string> lines;
 		std::string tempLine;
 		std::ifstream configFile;
 		configFile.open(CONFIG_PATH + this->m_fileName + std::string(".config"));
@@ -29,7 +30,44 @@ namespace MazeGame
 			lines.push_back(tempLine);
 		}
 
-
-
+		for (int i = 0; i < 3; i++)//17 rows in config file per maze  3 mazes
+		{
+			for (int j = 0; j < 9; j++)//tiles
+			{
+				for (int k = 0; k < 9; k++)
+				{
+					this->m_gameData.m_mazes[i].m_tiles[j][k] = std::stoi(lines[(17*i)+j].substr(k,1));
+				}
+			}
+			for (int j = 0; j < 3; j++)//treasure
+			{
+				std::string pos = lines[(17 * i) + 9 + j].substr(0, 2);
+				if (pos != std::string("!!"))
+				{
+					this->m_gameData.m_mazes[i].m_treasure[j][0] = std::stoi(pos);
+					this->m_gameData.m_mazes[i].m_treasure[j][1] = std::stoi(lines[(17 * i) + 9 + j].substr(2, 2));
+				}
+				else { continue; }//TODO throw error
+			}
+			for (int j = 0; j < 3; j++)//threats
+			{
+				std::string pos = lines[(17 * i) + 12 + j].substr(0, 2);
+				if (pos != std::string("!!"))
+				{
+					this->m_gameData.m_mazes[i].m_threats[j][0] = std::stoi(pos);
+					this->m_gameData.m_mazes[i].m_threats[j][1] = std::stoi(lines[(17 * i) + 12 + j].substr(2, 1));
+					this->m_gameData.m_mazes[i].m_threats[j][2] = std::stoi(lines[(17 * i) + 12 + j].substr(3, 1));
+				}
+				else { continue; }//TODO throw error
+			}
+			for (int j = 0; j < 4; j++)//passages
+			{
+				std::string passage = lines[(17 * i) + 15].substr(j, 1);
+				this->m_gameData.m_mazes[i].m_passages[j] = passage == std::string("!") ? -1 : std::stoi(passage);
+			}
+			//exit
+			std::string exit = lines[(17 * i) + 16].substr(0, 1);
+			this->m_gameData.m_mazes[i].m_exit = exit == std::string("!") ? -1 : std::stoi(exit);
+		}
 	}
 }
