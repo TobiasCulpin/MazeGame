@@ -15,34 +15,43 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="headers\framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="headers\targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="headers\Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MazeGame.h">
+    <ClInclude Include="headers\MazeGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\ConfigParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MazeGame.cpp">
+    <ClCompile Include="src\MazeGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="MazeGame.rc">
+    <ResourceCompile Include="headers\MazeGame.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
+    <Image Include="headers\small.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="MazeGame.ico">
+    <Image Include="headers\MazeGame.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
