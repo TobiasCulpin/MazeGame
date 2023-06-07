@@ -33,12 +33,24 @@
     <ClInclude Include="headers\Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\MazeData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\GameData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MazeGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ConfigParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MazeData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

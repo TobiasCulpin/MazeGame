@@ -131,14 +131,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="headers\GameData.h" />
     <ClInclude Include="headers\ConfigParser.h" />
     <ClInclude Include="headers\framework.h" />
     <ClInclude Include="headers\Globals.h" />
     <ClInclude Include="headers\MazeGame.h" />
     <ClInclude Include="headers\Resource.h" />
     <ClInclude Include="headers\targetver.h" />
+    <ClInclude Include="headers\MazeData.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameData.cpp" />
+    <ClCompile Include="src\MazeData.cpp" />
     <ClCompile Include="src\ConfigParser.cpp" />
     <ClCompile Include="src\MazeGame.cpp" />
   </ItemGroup>
