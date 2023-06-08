@@ -28,6 +28,10 @@ namespace MazeGame
 		std::vector<Room*> m_passages;
 		int m_exit;
 
+		MazeData* m_mazeData;
+		Maze* m_maze;
+
 		Room(MazeData* mazeData, Maze* maze);
+		void AssignPassages();
 	};
 }

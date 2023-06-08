@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Room.h"
 
 namespace MazeGame
 {
@@ -10,5 +11,6 @@ namespace MazeGame
 	public:
 		std::vector<Room> m_rooms;
 		Maze(GameData* gameData);
+		void Draw();
 	};
 }

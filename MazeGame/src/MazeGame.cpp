@@ -5,6 +5,8 @@
 #include "MazeGame.h"
 #include "ConfigParser.h"
 #include "Globals.h"
+#include "Maze.h"
+
 #include <windows.h>
 #include <objidl.h>
 #include <gdiplus.h>
@@ -12,6 +14,8 @@ using namespace Gdiplus;
 #pragma comment (lib,"Gdiplus.lib")
 
 #define MAX_LOADSTRING 100
+
+using namespace MazeGame;
 
 // Global Variables:
 HINSTANCE hInst;                                // current instance
@@ -37,12 +41,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	// TODO: Place code here.
-	MazeGame::ConfigParser parser = MazeGame::ConfigParser("config1");
-	MazeGame::GameData gameData = MazeGame::GameData();
-	parser.Parse(&gameData);
-	//parser.m_gameData
-
 	// Initialize global strings
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadStringW(hInstance, IDC_MAZEGAME, szWindowClass, MAX_LOADSTRING);
@@ -53,6 +51,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	{
 		return FALSE;
 	}
+
+	ConfigParser parser = ConfigParser("config1");
+	GameData gameData = GameData();
+	parser.Parse(&gameData);
+
+	Maze maze = Maze(&gameData);
+	maze.Draw();
 
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MAZEGAME));
 

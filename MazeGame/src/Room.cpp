@@ -12,6 +12,9 @@ namespace MazeGame
 {
 	Room::Room(MazeData* mazeData, Maze* maze)
 	{
+		this->m_mazeData = mazeData;
+		this->m_maze = maze;
+
 		for (int i = 0; i < 9; i++)//Tiles
 		{
 			for (int j = 0; j < 9; j++)
@@ -33,14 +36,7 @@ namespace MazeGame
 			int x = mazeData->m_threats[i][0] - (9 * y);
 			this->m_threats.push_back(Threat({x,y}, mazeData->m_threats[i][1], mazeData->m_threats[i][2], this));
 		}
-		for (int i = 0; i < 4; i++)//Passages  0=North, 1=East, 2=South, 3=West
-		{
-			int room = mazeData->m_passages[i];
-			if (room >= 0)
-			{
-				this->m_passages[i] = &(maze->m_rooms[room]);
-			}
-		}
+		
 		//Exit
 		this->m_exit = mazeData->m_exit;
 
@@ -63,5 +59,17 @@ namespace MazeGame
 			}
 		}
 		this->m_player = Player({ x, y }, this);
+	}
+
+	void Room::AssignPassages()
+	{
+		for (int i = 0; i < 4; i++)//Passages  0=North, 1=East, 2=South, 3=West
+		{
+			int room = this->m_mazeData->m_passages[i];
+			if (room >= 0)
+			{
+				this->m_passages.push_back(& (m_maze->m_rooms[room]));
+			}
+		}
 	}
 }
