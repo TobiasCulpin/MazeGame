@@ -12,7 +12,7 @@ namespace MazeGame
 	}
 	Room::Room(MazeData* data)
 	{
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i < 9; i++)//Tiles
 		{
 			for (int j = 0; j < 9; j++)
 			{
@@ -20,15 +20,26 @@ namespace MazeGame
 			}
 		}
 		
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 3; i++)//Treasure
 		{
 			int y = std::floor(data->m_treasure[i][0] / 9);
 			int x = data->m_treasure[i][0] - (9 * y);
 			this->m_treasures.push_back(Treasure({ x,y }, data->m_treasure[i][1], this));
 		}
 		
-
 		// TODO this->m_threats = threats;
-		//this->m_player = Player();
+
+		//Player
+		int x, y;
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_real_distribution<> dis(0, 1);
+		while (true)
+		{
+			x = std::floor(9 * dis(gen));
+			y = std::floor(9 * dis(gen));
+			if (this->m_tiles[y][x] != 0) { break; }
+		}
+		this->m_player = Player({x, y}, 0, this);
 	}
 }
