@@ -17,8 +17,8 @@ using namespace Gdiplus;
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
-GdiplusStartupInput gdiplusStartupInput;
-ULONG_PTR gdiplusToken;
+GdiplusStartupInput gdiplusStartupInput;		// Gdiplus stuff
+ULONG_PTR gdiplusToken;							// Gdiplus stuff
 
 
 // Forward declarations of functions included in this code module:
@@ -66,6 +66,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		}
 	}
 
+	GdiplusShutdown(gdiplusToken);
 	return (int)msg.wParam;
 }
 

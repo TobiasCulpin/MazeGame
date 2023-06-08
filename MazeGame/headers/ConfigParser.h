@@ -4,6 +4,7 @@
 
 namespace MazeGame
 {
+
 	class ConfigParser
 	{
 	private:
