@@ -27,7 +27,6 @@ namespace MazeGame
 
 		std::vector<Room*> m_passages;
 		int m_exit;
-		// TODO a lot more
 
 		Room(MazeData* mazeData, Maze* maze);
 	};

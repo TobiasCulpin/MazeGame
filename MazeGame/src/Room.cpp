@@ -41,7 +41,8 @@ namespace MazeGame
 				this->m_passages[i] = &(maze->m_rooms[room]);
 			}
 		}
-
+		//Exit
+		this->m_exit = mazeData->m_exit;
 
 		//Player
 		int x, y;
