@@ -13,7 +13,7 @@ namespace MazeGame
 		this->m_counter = counter;
 	}
 	
-	void Threat::Draw()
+	void Threat::Draw(HDC* hdc)
 	{
 		//TODO
 	}

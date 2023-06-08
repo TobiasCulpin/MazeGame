@@ -1,5 +1,8 @@
 #include "Treasure.h"
 #include "Room.h"
+#include "Globals.h"
+#include <string>
+
 namespace MazeGame
 {
 	Treasure::Treasure() : MazeEntity()
@@ -10,9 +13,18 @@ namespace MazeGame
 	{
 		this->m_value = value;
 	}
-	void Treasure::Draw()
+	void Treasure::Draw(HDC* hdc)
 	{
-		//TODO
+		if (this->m_pos.second > 0 && this->m_isHidden == false)
+		{
+			Graphics graphics(*hdc);
+
+			LPCWSTR path = L"C:\\Users\\tculpin\\source\\repos\\MazeGame\\MazeGame\\res\\Treasure.png";
+			Image image(path);
+			Point point = Point(MG_ROOM_X + 12 + (64 * this->m_pos.first),
+				MG_ROOM_Y + 12 + (64 * this->m_pos.second));
+			graphics.DrawImage(&image, point);
+		}
 	}
 	void Treasure::Claim()
 	{

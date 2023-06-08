@@ -10,7 +10,7 @@ namespace MazeGame
 		this->m_totalTreasure = 0;
 	}
 
-	void Player::Draw()
+	void Player::Draw(HDC* hdc)
 	{
 		//TODO
 	}

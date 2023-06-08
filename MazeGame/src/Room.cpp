@@ -98,5 +98,11 @@ namespace MazeGame
 				}
 			}
 		}
+
+		for (int i = 0; i < 3; i++)
+		{
+			this->m_treasures[i].Draw(hdc);
+			//this->m_threats[i].Draw();
+		}
 	}
 }

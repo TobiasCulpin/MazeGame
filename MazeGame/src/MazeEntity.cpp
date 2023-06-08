@@ -14,7 +14,7 @@ namespace MazeGame
 		this->m_isHidden = false;
 		this->m_room = room;
 	}
-	void MazeEntity::Draw()
+	void MazeEntity::Draw(HDC* hdc)
 	{
 		//Cannot draw base class
 	}
