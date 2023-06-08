@@ -23,6 +23,7 @@ WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 GdiplusStartupInput gdiplusStartupInput;		// Gdiplus stuff
 ULONG_PTR gdiplusToken;							// Gdiplus stuff
+Maze* mazePtr;
 
 
 // Forward declarations of functions included in this code module:
@@ -57,7 +58,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	parser.Parse(&gameData);
 
 	Maze maze = Maze(&gameData);
-	maze.Draw();
+	mazePtr = &maze;
 
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MAZEGAME));
 
@@ -134,11 +135,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	return TRUE;
 }
 
-void OnPaint(HDC hdc)
+void OnPaint(HDC hdc)//All drawing comes from here
 {
 	Graphics graphics(hdc);
 	Pen pen(Gdiplus::Color(255, 0, 0, 255));
 	graphics.DrawLine(&pen, 0, 0, 100, 100);
+
+	mazePtr->Draw(hdc);
 }
 
 //

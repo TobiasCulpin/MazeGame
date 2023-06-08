@@ -2,6 +2,7 @@
 #include "Room.h"
 #include "GameData.h"
 #include "MazeData.h"
+#include "Globals.h"
 namespace MazeGame
 {
 	Maze::Maze(GameData* gameData)
@@ -16,8 +17,18 @@ namespace MazeGame
 			this->m_rooms[i].AssignPassages();
 		}
 	}
-	void Maze::Draw()
+	void Maze::Draw(HDC hdc)
 	{
-
+		//Background
+		Graphics graphics(hdc);
+		Pen pen(Color(255, 0, 0, 255));
+		SolidBrush solidBrush(Color(255, 30, 10, 130));
+		
+		graphics.FillRectangle(&solidBrush, 0, 0, MG_WINDOW_WIDTH, MG_WINDOW_HEIGHT);
+		//Walls
+		//Passages
+		//Treasure
+		//Threats
+		//Player
 	}
 }
