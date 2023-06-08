@@ -14,8 +14,10 @@ namespace MazeGame
 	class Maze
 	{
 	public:
+		int m_activeRoom;
 		std::vector<Room> m_rooms;
+
 		Maze(GameData* gameData);
-		void Draw(HDC hdc);
+		void Draw(HDC* hdc);
 	};
 }

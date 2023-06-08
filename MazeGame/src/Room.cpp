@@ -5,6 +5,7 @@
 //#include "Threat.h" - do not include for some reason
 #include "GameData.h"
 #include "Maze.h"
+#include "Globals.h"
 
 #include <Random>
 
@@ -69,6 +70,32 @@ namespace MazeGame
 			if (room >= 0)
 			{
 				this->m_passages.push_back(& (m_maze->m_rooms[room]));
+			}
+		}
+	}
+	void Room::Draw(HDC* hdc)
+	{
+		//Background
+		Graphics graphics(*hdc);
+		SolidBrush mediumGrey(Color(255, 70, 70, 70));
+
+		graphics.FillRectangle(&mediumGrey, MG_ROOM_X, MG_ROOM_Y, MG_ROOM_SIZE, MG_ROOM_SIZE);
+
+		//Tiles
+		SolidBrush lightGrey(Color(255, 200, 200, 200));
+		SolidBrush darkGrey(Color(255, 50, 50, 50));
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+				if (this->m_tiles[i][j] == 0)
+				{
+					graphics.FillRectangle(&darkGrey, MG_ROOM_X + 12 + (64 * j), MG_ROOM_Y + 12 + (64 * i), 64, 64);
+				}
+				else
+				{
+					graphics.FillRectangle(&lightGrey, MG_ROOM_X + 12 + (64 * j), MG_ROOM_Y + 12 + (64 * i), 64, 64);
+				}
 			}
 		}
 	}

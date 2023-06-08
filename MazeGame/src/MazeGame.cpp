@@ -37,7 +37,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
+	ConfigParser parser = ConfigParser("config1");
+	GameData gameData = GameData();
+	parser.Parse(&gameData);
 
+	Maze maze = Maze(&gameData);
+	mazePtr = &maze;
 
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
@@ -53,12 +58,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		return FALSE;
 	}
 
-	ConfigParser parser = ConfigParser("config1");
-	GameData gameData = GameData();
-	parser.Parse(&gameData);
-
-	Maze maze = Maze(&gameData);
-	mazePtr = &maze;
+	
 
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MAZEGAME));
 
@@ -135,13 +135,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	return TRUE;
 }
 
-void OnPaint(HDC hdc)//All drawing comes from here
+void OnPaint(HDC* hdc)//All drawing comes from here
 {
-	Graphics graphics(hdc);
+	Graphics graphics(*hdc);
 	Pen pen(Gdiplus::Color(255, 0, 0, 255));
 	graphics.DrawLine(&pen, 0, 0, 100, 100);
 
-	mazePtr->Draw(hdc);
+	if (mazePtr != nullptr) { mazePtr->Draw(hdc); }
 }
 
 //
@@ -179,7 +179,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hWnd, &ps);
-		OnPaint(hdc);
+		OnPaint(&hdc);
 
 		EndPaint(hWnd, &ps);
 	}
