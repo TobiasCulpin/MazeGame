@@ -10,6 +10,7 @@
 #include <windows.h>
 #include <objidl.h>
 #include <gdiplus.h>
+#include <iostream>
 using namespace Gdiplus;
 #pragma comment (lib,"Gdiplus.lib")
 
@@ -187,6 +188,33 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
+	case WM_KEYDOWN: //Keyboard inputs
+	{
+		switch (wParam)
+		{
+		case VK_UP:
+		{
+			mazePtr->m_rooms[mazePtr->m_activeRoom].m_player.Move(0);//North
+		}
+		break;
+		case VK_DOWN:
+		{
+			mazePtr->m_rooms[mazePtr->m_activeRoom].m_player.Move(2);//South
+		}
+		break;
+		case VK_LEFT:
+		{
+			mazePtr->m_rooms[mazePtr->m_activeRoom].m_player.Move(3);//West
+		}
+		break;
+		case VK_RIGHT:
+		{
+			mazePtr->m_rooms[mazePtr->m_activeRoom].m_player.Move(1);//East
+		}
+		break;
+		}
+	}
+	break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
