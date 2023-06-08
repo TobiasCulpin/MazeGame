@@ -11,9 +11,9 @@ namespace MazeGame
 		std::string m_fileName;
 
 		void InvalidConfig();
-		void Parse();
+		
 	public:
-		GameData m_gameData;
+		void Parse(GameData* gameData);
 		ConfigParser(std::string fileName);
 	};
 }

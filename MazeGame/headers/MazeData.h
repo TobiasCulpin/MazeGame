@@ -4,6 +4,7 @@
 
 namespace MazeGame
 {
+	class GameData;
 	class MazeData
 	{
 	public:
@@ -12,7 +13,10 @@ namespace MazeGame
 		int m_threats[3][3];
 		int m_passages[4];
 		int m_exit;
+		int m_index;
 
-		MazeData();
+		GameData* m_gameData;
+
+		MazeData(GameData* gameData);
 	};
 }

@@ -143,8 +143,11 @@
     <ClInclude Include="headers\Treasure.h" />
     <ClInclude Include="headers\Room.h" />
     <ClInclude Include="headers\Player.h" />
+    <ClInclude Include="headers\Threat.h" />
+    <ClInclude Include="headers\Maze.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Maze.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Room.cpp" />
     <ClCompile Include="src\MazeEntity.cpp" />
@@ -153,6 +156,7 @@
     <ClCompile Include="src\ConfigParser.cpp" />
     <ClCompile Include="src\MazeGame.cpp" />
     <ClCompile Include="src\Treasure.cpp" />
+    <ClCompile Include="src\Threat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="headers\MazeGame.rc" />

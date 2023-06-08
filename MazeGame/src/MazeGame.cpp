@@ -39,6 +39,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	// TODO: Place code here.
 	MazeGame::ConfigParser parser = MazeGame::ConfigParser("config1");
+	MazeGame::GameData gameData = MazeGame::GameData();
+	parser.Parse(&gameData);
 	//parser.m_gameData
 
 	// Initialize global strings

@@ -1,13 +1,14 @@
 #pragma once
+#include <Vector>
 #include "MazeData.h"
-#include "Vector"
+
 
 namespace MazeGame
 {
 	class GameData
 	{
 	public:
-		std::vector<MazeData> m_mazes;
+		std::vector<MazeData> m_mazes = {};
 		GameData();
 	};
 }

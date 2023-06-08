@@ -8,9 +8,10 @@ namespace MazeGame
     {
     public:
         int m_totalTreasure;
+        int m_totalThreats;
 
         Player();
-        Player(std::pair<int, int> pos, int totalTreasure, Room* room);
+        Player(std::pair<int, int> pos, Room* room);
         void Draw() override;
     };
 }

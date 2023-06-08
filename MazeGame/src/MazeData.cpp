@@ -1,8 +1,10 @@
 #include "MazeData.h"
 namespace MazeGame
 {
-	MazeData::MazeData()
+	MazeData::MazeData(GameData* gameData)
 	{
+		this->m_gameData = gameData;
+
 		for (int i = 0; i < 9; i++)
 		{
 			for (int j = 0; j < 9; j++)
@@ -38,5 +40,7 @@ namespace MazeGame
 		this->m_passages[0] = -1;
 
 		this->m_exit = -1;
+
+		this->m_index = -1;
 	}
 }

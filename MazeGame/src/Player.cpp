@@ -5,9 +5,9 @@ namespace MazeGame
 	{
 		this->m_totalTreasure = 0;
 	}
-	Player::Player(std::pair<int, int> pos, int totalTreasure, Room* room) : MazeEntity(pos, room)
+	Player::Player(std::pair<int, int> pos, Room* room) : MazeEntity(pos, room)
 	{
-		this->m_totalTreasure = totalTreasure;
+		this->m_totalTreasure = 0;
 	}
 
 	void Player::Draw()
