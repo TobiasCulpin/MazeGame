@@ -194,25 +194,34 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 		case VK_UP:
 		{
-			mazePtr->m_rooms[mazePtr->m_activeRoom].m_player.Move(0);//North
+			mazePtr->m_player.Move(0);//North
 		}
 		break;
 		case VK_DOWN:
 		{
-			mazePtr->m_rooms[mazePtr->m_activeRoom].m_player.Move(2);//South
+			mazePtr->m_player.Move(2);//South
 		}
 		break;
 		case VK_LEFT:
 		{
-			mazePtr->m_rooms[mazePtr->m_activeRoom].m_player.Move(3);//West
+			mazePtr->m_player.Move(3);//West
 		}
 		break;
 		case VK_RIGHT:
 		{
-			mazePtr->m_rooms[mazePtr->m_activeRoom].m_player.Move(1);//East
+			mazePtr->m_player.Move(1);//East
 		}
 		break;
 		}
+		//PAINTSTRUCT ps;
+		//HDC hdc = BeginPaint(hWnd, &ps);
+		//OnPaint(&hdc);
+		//
+		//EndPaint(hWnd, &ps);
+		//const RECT* area = { 0, 0, MG_WINDOW_WIDTH, MG_WINDOW_HEIGHT };
+		//RedrawWindow(hWnd, area, NULL, NULL);
+		//SendMessage(hWnd, WM_PAINT, 0, 0);
+		InvalidateRect(hWnd, NULL, true);
 	}
 	break;
 	default:

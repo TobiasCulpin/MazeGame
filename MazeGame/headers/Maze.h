@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Room.h"
+#include "Player.h"
 #include <windows.h>
 #include <objidl.h>
 #include <gdiplus.h>
@@ -16,6 +17,7 @@ namespace MazeGame
 	public:
 		int m_activeRoom;
 		std::vector<Room> m_rooms;
+		Player m_player;
 
 		Maze(GameData* gameData);
 		void Draw(HDC* hdc);

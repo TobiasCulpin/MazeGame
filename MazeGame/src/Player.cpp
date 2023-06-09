@@ -6,9 +6,11 @@ namespace MazeGame
 	Player::Player() : MazeEntity()
 	{
 		this->m_totalTreasure = 0;
+		this->debug = "no args";
 	}
 	Player::Player(std::pair<int, int> pos, Room* room) : MazeEntity(pos, room)
 	{
+		this->debug = "normal";
 		this->m_totalTreasure = 0;
 	}
 
@@ -26,11 +28,12 @@ namespace MazeGame
 	void Player::Move(int direction)
 	{
 		int dX = (direction % 2) * (2 - direction);
-		int dY = (-(direction - 1) % 2);
+		int dY = (direction - 1) % 2;
 		int newPos;
 		try
 		{
-			newPos = this->m_room->m_tiles[this->m_pos.first + dX][this->m_pos.second + dY];
+			newPos = m_room->m_tiles[this->m_pos.second + dY][this->m_pos.first + dX];
+			if (this->m_pos.first + dX < 0 || this->m_pos.first + dX > 8 || this->m_pos.second + dY < 0 || this->m_pos.second + dY > 8) { newPos = 0; }
 		}
 		catch (...)
 		{

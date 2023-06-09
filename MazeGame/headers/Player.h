@@ -6,6 +6,8 @@ namespace MazeGame
 {
     class Player : public MazeEntity
     {
+    private:
+        const char* debug;
     public:
         int m_totalTreasure;
         int m_totalThreats;

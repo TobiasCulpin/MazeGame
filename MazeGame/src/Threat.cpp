@@ -31,7 +31,7 @@ namespace MazeGame
 	{
 		this->m_isHidden = action == this->m_counter;
 		this->m_room->m_remainingThreats -= 1;
-		this->m_room->m_player.m_totalThreats += 1;
+		//this->m_room->m_player.m_totalThreats += 1;
 		return this->m_isHidden;
 	}
 }

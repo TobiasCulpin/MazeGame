@@ -7,7 +7,6 @@
 #include "Maze.h"
 #include "Globals.h"
 
-#include <Random>
 
 namespace MazeGame
 {
@@ -41,25 +40,7 @@ namespace MazeGame
 		//Exit
 		this->m_exit = mazeData->m_exit;
 
-		//Player
-		int x, y;
-		int z = 0;
-		std::random_device rd;
-		std::mt19937 gen(rd());
-		std::uniform_real_distribution<> dis(0, 1);
-		while (true)
-		{
-			x = std::floor(9 * dis(gen));
-			y = std::floor(9 * dis(gen));
-			if (this->m_tiles[y][x] != 0) { break; }
-			z++;
-			if (z >= 80)
-			{
-				break;
-				//TODO Throw error - space not found
-			}
-		}
-		this->m_player = Player({ x, y }, this);
+		
 	}
 
 	void Room::AssignPassages()
@@ -105,8 +86,5 @@ namespace MazeGame
 			this->m_treasures[i].Draw(hdc);
 			this->m_threats[i].Draw(hdc);
 		}
-
-		//Player
-		this->m_player.Draw(hdc);
 	}
 }
