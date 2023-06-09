@@ -48,22 +48,22 @@ namespace MazeGame
 		{
 			//Passages
 			int pass = 0;
-			if (this->m_pos.first == 4 && this->m_pos.second == 0 && dY == -1)//North Passage
+			if (this->m_pos.first == 4 && this->m_pos.second == 0 && dY == -1 && this->m_room->m_passages[0] != -1)//North Passage
 			{
 				this->m_pos = std::pair<int, int>(4, 8);
 				this->m_room->m_maze->SetActiveRoom(this->m_room->m_passages[0]);
 			}
-			else if (this->m_pos.first == 8 && this->m_pos.second == 4 && dX == 1)//East Passage
+			else if (this->m_pos.first == 8 && this->m_pos.second == 4 && dX == 1 && this->m_room->m_passages[1] != -1)//East Passage
 			{
 				this->m_pos = std::pair<int, int>(0, 4);
 				this->m_room->m_maze->SetActiveRoom(this->m_room->m_passages[1]);
 			}
-			else if (this->m_pos.first == 4 && this->m_pos.second == 8 && dY == 1)//South Passage
+			else if (this->m_pos.first == 4 && this->m_pos.second == 8 && dY == 1 && this->m_room->m_passages[2] != -1)//South Passage
 			{
 				this->m_pos = std::pair<int, int>(4, 0);
 				this->m_room->m_maze->SetActiveRoom(this->m_room->m_passages[2]);
 			}
-			else if (this->m_pos.first == 0 && this->m_pos.second == 4 && dX == -1)//West Passage
+			else if (this->m_pos.first == 0 && this->m_pos.second == 4 && dX == -1 && this->m_room->m_passages[3] != -1)//West Passage
 			{
 				this->m_pos = std::pair<int, int>(8, 4);
 				this->m_room->m_maze->SetActiveRoom(this->m_room->m_passages[3]);

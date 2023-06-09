@@ -35,9 +35,9 @@ namespace MazeGame
 		this->m_threats[2][2] = 0;
 
 		this->m_passages[0] = -1;
-		this->m_passages[0] = -1;
-		this->m_passages[0] = -1;
-		this->m_passages[0] = -1;
+		this->m_passages[1] = -1;
+		this->m_passages[2] = -1;
+		this->m_passages[3] = -1;
 
 		this->m_exit = -1;
 
