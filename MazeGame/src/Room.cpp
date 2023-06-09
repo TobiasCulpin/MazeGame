@@ -28,6 +28,7 @@ namespace MazeGame
 			int y = std::floor(mazeData->m_treasure[i][0] / 9);
 			int x = mazeData->m_treasure[i][0] - (9 * y);
 			this->m_treasures.push_back(Treasure({ x, y }, mazeData->m_treasure[i][1], this));
+			this->m_tiles[y][x] = 2;
 		}
 
 		for (int i = 0; i < 3; i++)//Threats
@@ -35,6 +36,7 @@ namespace MazeGame
 			int y = std::floor(mazeData->m_threats[i][0] / 9);
 			int x = mazeData->m_threats[i][0] - (9 * y);
 			this->m_threats.push_back(Threat({x,y}, mazeData->m_threats[i][1], mazeData->m_threats[i][2], this));
+			this->m_tiles[y][x] = 3;
 		}
 		
 		//Exit

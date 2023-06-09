@@ -8,7 +8,7 @@ using namespace Gdiplus;
 #pragma comment (lib,"Gdiplus.lib")
 namespace MazeGame
 {
-	class Threat : MazeEntity
+	class Threat : public MazeEntity
 	{
 	public:
 		int m_type;

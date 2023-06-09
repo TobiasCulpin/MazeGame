@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "Globals.h"
 #include "Room.h"
+#include "Treasure.h"
+#include "MazeEntity.h"
 namespace MazeGame
 {
 	Player::Player() : MazeEntity()
@@ -51,14 +53,38 @@ namespace MazeGame
 			this->m_pos = std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY);
 		}
 		break;
-		case 2://TODO
+		case 2://Treasure
 		{
-
+			for (int i = 0; i < 3; i++)
+			{
+				if (this->m_room->m_treasures[i].m_pos == std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY))
+				{
+					m_room->m_treasures[i].Claim();
+				}
+				this->m_pos = std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY);
+				m_room->m_tiles[this->m_pos.second + dY][this->m_pos.first + dX] = 1;
+				this->m_totalTreasure += this->m_room->m_treasures[i].m_value;
+				this->m_room->m_remainingTreasures -= 1;
+			}
 		}
 		break;
-		case 3://TODO
+		case 3://Threat
 		{
-
+			for (int i = 0; i < 3; i++)
+			{
+				if (this->m_room->m_threats[i].m_pos == std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY))
+				{
+					bool result = m_room->m_threats[i].Defeat(0);
+					if (result)
+					{
+						this->m_pos = std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY);
+						m_room->m_tiles[this->m_pos.second + dY][this->m_pos.first + dX] = 1;
+						this->m_totalThreats += 1;
+						this->m_room->m_remainingThreats -= 1;
+					}
+				}
+				
+			}
 		}
 		break;
 		}

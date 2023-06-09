@@ -52,6 +52,10 @@ namespace MazeGame
 		this->m_rooms[this->m_activeRoom].Draw(hdc);
 		//Player
 		this->m_player.Draw(hdc);
+		//Menu
+		SolidBrush menuColor(Color(255, 200, 200, 200));
+		graphics.FillRectangle(&menuColor, MG_INFO_X, MG_INFO_Y, MG_INFO_SIZE, MG_INFO_SIZE);
+
 		//Other TODO
 	}
 }

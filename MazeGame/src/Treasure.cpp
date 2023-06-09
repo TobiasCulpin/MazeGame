@@ -1,6 +1,7 @@
 #include "Treasure.h"
 #include "Room.h"
 #include "Globals.h"
+#include "Maze.h"
 #include <string>
 
 namespace MazeGame
@@ -30,7 +31,7 @@ namespace MazeGame
 	{
 		if (this->m_isHidden) { return; }
 		this->m_isHidden = true;
-		this->m_room->m_remainingTreasures -= 1;
-		//this->m_room->m_player.m_totalTreasure += this->m_value;
+		//this->m_room->m_remainingTreasures -= 1;
+		//this->m_room->m_maze->m_player.m_totalTreasure += this->m_value;
 	}
 }

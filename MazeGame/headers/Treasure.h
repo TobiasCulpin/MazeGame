@@ -12,7 +12,7 @@ namespace MazeGame
 {
 	class Room;
 
-	class Treasure : MazeEntity
+	class Treasure : public MazeEntity
 	{
 	public:
 		int m_value;
