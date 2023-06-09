@@ -3,6 +3,7 @@
 #include "GameData.h"
 #include "MazeData.h"
 #include "Globals.h"
+#include <string>
 
 
 #include <Random>
@@ -48,14 +49,36 @@ namespace MazeGame
 		SolidBrush solidBrush(Color(255, 30, 10, 130));
 		
 		graphics.FillRectangle(&solidBrush, 0, 0, MG_WINDOW_WIDTH, MG_WINDOW_HEIGHT);
-		//Maze
+		//Room
 		this->m_rooms[this->m_activeRoom].Draw(hdc);
 		//Player
 		this->m_player.Draw(hdc);
 		//Menu
 		SolidBrush menuColor(Color(255, 200, 200, 200));
 		graphics.FillRectangle(&menuColor, MG_INFO_X, MG_INFO_Y, MG_INFO_SIZE, MG_INFO_SIZE);
+		FontFamily fontFamily(L"Arial");
+		Font font(&fontFamily, 16, FontStyleRegular, UnitPixel);
+		SolidBrush black(Color(2555, 0, 0, 0));
+
+		PointF p1(MG_INFO_X + 25, MG_INFO_Y + 25);
+		graphics.DrawString(L"Total Treasure: ", -1, &font, p1, &black);
+
+		PointF p2(MG_INFO_X + 160, MG_INFO_Y + 25);
+		graphics.DrawString(std::to_wstring(this->m_player.m_totalTreasure).c_str(), -1, &font, p2, &black);
+
+		PointF p3(MG_INFO_X + 25, MG_INFO_Y + 50);
+		graphics.DrawString(L"Threats Defeated: ", -1, &font, p3, &black);
+
+		PointF p4(MG_INFO_X + 160, MG_INFO_Y + 50);
+		graphics.DrawString(std::to_wstring(this->m_player.m_totalThreats).c_str(), -1, &font, p4, &black);
 
 		//Other TODO
+	}
+
+	void Maze::SetActiveRoom(int roomIndex)
+	{
+		if (roomIndex == -1) { return; }//no passage
+		this->m_activeRoom = roomIndex;
+		this->m_player.m_room = &this->m_rooms[this->m_activeRoom];
 	}
 }

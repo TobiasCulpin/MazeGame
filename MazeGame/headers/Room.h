@@ -28,7 +28,7 @@ namespace MazeGame
 		unsigned int m_remainingThreats;
 		unsigned int m_roomIndex;
 
-		std::vector<Room*> m_passages;
+		std::vector<int> m_passages;
 		int m_exit;
 
 		MazeData* m_mazeData;

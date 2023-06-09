@@ -3,6 +3,7 @@
 #include "Room.h"
 #include "Treasure.h"
 #include "MazeEntity.h"
+#include "Maze.h"
 namespace MazeGame
 {
 	Player::Player() : MazeEntity()
@@ -45,7 +46,28 @@ namespace MazeGame
 		{
 		case 0://Wall
 		{
-
+			//Passages
+			int pass = 0;
+			if (this->m_pos.first == 4 && this->m_pos.second == 0 && dY == -1)//North Passage
+			{
+				this->m_pos = std::pair<int, int>(4, 8);
+				this->m_room->m_maze->SetActiveRoom(this->m_room->m_passages[0]);
+			}
+			else if (this->m_pos.first == 8 && this->m_pos.second == 4 && dX == 1)//East Passage
+			{
+				this->m_pos = std::pair<int, int>(0, 4);
+				this->m_room->m_maze->SetActiveRoom(this->m_room->m_passages[1]);
+			}
+			else if (this->m_pos.first == 4 && this->m_pos.second == 8 && dY == 1)//South Passage
+			{
+				this->m_pos = std::pair<int, int>(4, 0);
+				this->m_room->m_maze->SetActiveRoom(this->m_room->m_passages[2]);
+			}
+			else if (this->m_pos.first == 0 && this->m_pos.second == 4 && dX == -1)//West Passage
+			{
+				this->m_pos = std::pair<int, int>(8, 4);
+				this->m_room->m_maze->SetActiveRoom(this->m_room->m_passages[3]);
+			}
 		}
 		break;
 		case 1://Path
@@ -60,11 +82,12 @@ namespace MazeGame
 				if (this->m_room->m_treasures[i].m_pos == std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY))
 				{
 					m_room->m_treasures[i].Claim();
+
+					m_room->m_tiles[this->m_pos.second + dY][this->m_pos.first + dX] = 1;
+					this->m_pos = std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY);
+					this->m_totalTreasure += this->m_room->m_treasures[i].m_value;
+					this->m_room->m_remainingTreasures -= 1;
 				}
-				this->m_pos = std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY);
-				m_room->m_tiles[this->m_pos.second + dY][this->m_pos.first + dX] = 1;
-				this->m_totalTreasure += this->m_room->m_treasures[i].m_value;
-				this->m_room->m_remainingTreasures -= 1;
 			}
 		}
 		break;
@@ -77,8 +100,9 @@ namespace MazeGame
 					bool result = m_room->m_threats[i].Defeat(0);
 					if (result)
 					{
-						this->m_pos = std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY);
+
 						m_room->m_tiles[this->m_pos.second + dY][this->m_pos.first + dX] = 1;
+						this->m_pos = std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY);
 						this->m_totalThreats += 1;
 						this->m_room->m_remainingThreats -= 1;
 					}
@@ -87,6 +111,20 @@ namespace MazeGame
 			}
 		}
 		break;
+		case 4://Coin
+		{
+			this->m_pos = std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY);//Treat as path
+		}
+		}
+		
+
+	}
+	void Player::Deposit()
+	{
+		if (this->m_totalTreasure > 0 && m_room->m_tiles[this->m_pos.second][this->m_pos.first] != 4)
+		{
+			m_room->m_tiles[this->m_pos.second][this->m_pos.first] = 4;//Coin
+			this->m_totalTreasure -= 1;
 		}
 	}
 }

@@ -212,6 +212,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			mazePtr->m_player.Move(1);//East
 		}
 		break;
+		case 0x43://C
+		{
+			mazePtr->m_player.Deposit();
+		}
+		break;
 		}
 		//PAINTSTRUCT ps;
 		//HDC hdc = BeginPaint(hWnd, &ps);

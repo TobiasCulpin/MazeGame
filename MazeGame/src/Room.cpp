@@ -52,7 +52,11 @@ namespace MazeGame
 			int room = this->m_mazeData->m_passages[i];
 			if (room >= 0)
 			{
-				this->m_passages.push_back(& (m_maze->m_rooms[room]));
+				this->m_passages.push_back(room);
+			}
+			else
+			{
+				this->m_passages.push_back(-1);
 			}
 		}
 	}
@@ -78,6 +82,14 @@ namespace MazeGame
 				else
 				{
 					graphics.FillRectangle(&lightGrey, MG_ROOM_X + 12 + (64 * j), MG_ROOM_Y + 12 + (64 * i), 64, 64);
+					if (this->m_tiles[i][j] == 4)//Coin
+					{
+
+						LPCWSTR path = L"C:\\Users\\tculpin\\source\\repos\\MazeGame\\MazeGame\\res\\Coin.png";
+						Image image(path);
+						Point point = Point(MG_ROOM_X + 12 + (64 * j), MG_ROOM_Y + 12 + (64 * i));
+						graphics.DrawImage(&image, point);
+					}
 				}
 			}
 		}

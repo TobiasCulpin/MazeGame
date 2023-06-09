@@ -21,5 +21,6 @@ namespace MazeGame
 
 		Maze(GameData* gameData);
 		void Draw(HDC* hdc);
+		void SetActiveRoom(int roomIndex);
 	};
 }

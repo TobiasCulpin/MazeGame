@@ -16,5 +16,6 @@ namespace MazeGame
         Player(std::pair<int, int> pos, Room* room);
         void Draw(HDC* hdc) override;
         void Move(int direction);
+        void Deposit();
     };
 }
