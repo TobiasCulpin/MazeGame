@@ -16,6 +16,6 @@ namespace MazeGame
 		Threat();
 		Threat(std::pair<int, int> pos, int type, int counter, Room* room);
 		void Draw(HDC* hdc) override;
-		bool Defeat(int action);
+		void Defeat(int action);
 	};
 }

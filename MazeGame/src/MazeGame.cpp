@@ -217,6 +217,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			mazePtr->m_player.Deposit();
 		}
 		break;
+		case 0x31://1
+		{
+			mazePtr->m_player.DetectThreat(0);
+		}
+		break;
+		case 0x32://2
+		{
+			mazePtr->m_player.DetectThreat(1);
+		}
+		break;
+		case 0x33://3
+		{
+			mazePtr->m_player.DetectThreat(2);
+		}
+		break;
 		}
 		//PAINTSTRUCT ps;
 		//HDC hdc = BeginPaint(hWnd, &ps);

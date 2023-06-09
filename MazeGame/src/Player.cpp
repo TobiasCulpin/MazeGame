@@ -97,17 +97,15 @@ namespace MazeGame
 			{
 				if (this->m_room->m_threats[i].m_pos == std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY))
 				{
-					bool result = m_room->m_threats[i].Defeat(0);
-					if (result)
+					if (this->m_room->m_threats[i].m_type == 3 or this->m_room->m_threats[i].m_isHidden != false)
 					{
-
 						m_room->m_tiles[this->m_pos.second + dY][this->m_pos.first + dX] = 1;
 						this->m_pos = std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY);
 						this->m_totalThreats += 1;
 						this->m_room->m_remainingThreats -= 1;
+						this->m_room->m_threats[i].m_isHidden = true;
 					}
 				}
-				
 			}
 		}
 		break;
@@ -116,8 +114,6 @@ namespace MazeGame
 			this->m_pos = std::pair<int, int>(this->m_pos.first + dX, this->m_pos.second + dY);//Treat as path
 		}
 		}
-		
-
 	}
 	void Player::Deposit()
 	{
@@ -125,6 +121,21 @@ namespace MazeGame
 		{
 			m_room->m_tiles[this->m_pos.second][this->m_pos.first] = 4;//Coin
 			this->m_totalTreasure -= 1;
+		}
+	}
+	void Player::DetectThreat(int counter)
+	{
+		int x, y, tx, ty;
+		for (int i = 0; i < 3; i++)
+		{
+			x = this->m_pos.first;
+			y = this->m_pos.second;
+			tx = this->m_room->m_threats[i].m_pos.first;
+			ty = this->m_room->m_threats[i].m_pos.second;
+			if ((x == tx && y + 1 == ty) || (x == tx && y - 1 == ty) || (x + 1 == tx && y == ty) || (x - 1 == tx && y == ty))//adjacent
+			{
+				this->m_room->m_threats[i].Defeat(counter);
+			}
 		}
 	}
 }

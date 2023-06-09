@@ -21,18 +21,33 @@ namespace MazeGame
 		{
 			Graphics graphics(*hdc);
 
-			LPCWSTR path = L"C:\\Users\\tculpin\\source\\repos\\MazeGame\\MazeGame\\res\\Threat.png";
+			LPCWSTR path = L"C:\\Users\\tculpin\\source\\repos\\MazeGame\\MazeGame\\res\\Threat.png";;
+			switch (this->m_type)
+			{
+			case 0:
+				path = L"C:\\Users\\tculpin\\source\\repos\\MazeGame\\MazeGame\\res\\Bomb.png";
+				break;
+			case 1:
+				path = L"C:\\Users\\tculpin\\source\\repos\\MazeGame\\MazeGame\\res\\Monster.png";
+				break;
+			case 2:
+				path = L"C:\\Users\\tculpin\\source\\repos\\MazeGame\\MazeGame\\res\\Spikes.png";
+				break;
+			case 3:
+				path = L"C:\\Users\\tculpin\\source\\repos\\MazeGame\\MazeGame\\res\\Defeated.png";
+				break;
+			}
 			Image image(path);
 			Point point = Point(MG_ROOM_X + 12 + (64 * this->m_pos.first),
 				MG_ROOM_Y + 12 + (64 * this->m_pos.second));
 			graphics.DrawImage(&image, point);
 		}
 	}
-	bool Threat::Defeat(int action)
+	void Threat::Defeat(int action)
 	{
-		this->m_isHidden = action == this->m_counter;
-		//this->m_room->m_remainingThreats -= 1;
-		//this->m_room->m_maze->m_player.m_totalThreats += 1;
-		return this->m_isHidden;
+		if (action == this->m_type)
+		{
+			this->m_type = 3;//defeated
+		}
 	}
 }

@@ -17,5 +17,6 @@ namespace MazeGame
         void Draw(HDC* hdc) override;
         void Move(int direction);
         void Deposit();
+        void DetectThreat(int counter);//as in counter-measure
     };
 }
